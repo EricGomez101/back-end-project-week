@@ -12,6 +12,10 @@ const NoteSchema = new Schema({
     type: String,
     required: true,
   },
+  background: {
+    type: String,
+    default: "white",
+  }
   user: {
     type: ObjectId,
     ref: 'User',
