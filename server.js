@@ -22,7 +22,7 @@ mongoose.connect('mongodb://eric:x@ds139950.mlab.com:39950/lambda-notes')
 server.use(cors({}))
 server.use(helmet());
 server.use(express.json({
-  limit: "10mb",
+  limit: "100mb",
 }));
 
 // sanitation check
