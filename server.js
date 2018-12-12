@@ -21,7 +21,9 @@ mongoose.connect('mongodb://eric:x@ds139950.mlab.com:39950/lambda-notes')
 // mount middleware
 server.use(cors({}))
 server.use(helmet());
-server.use(express.json());
+server.use(express.json({
+  limit: "10mb",
+}));
 
 // sanitation check
 server.get('/', (req, res) => {
