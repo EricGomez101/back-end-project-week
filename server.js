@@ -9,6 +9,7 @@ const userRoute = require('./Routes/user');
 const notesRoute = require('./Routes/notesRoute');
 const mediaRoute = require('./Routes/mediaRoute');
 
+
 // database connection
 mongoose.connect('mongodb://eric:x@ds139950.mlab.com:39950/lambda-notes')
   .then(() => {
@@ -21,9 +22,7 @@ mongoose.connect('mongodb://eric:x@ds139950.mlab.com:39950/lambda-notes')
 // mount middleware
 server.use(cors({}))
 server.use(helmet());
-server.use(express.json({
-  limit: "100mb",
-}));
+server.use(express.json());
 
 // sanitation check
 server.get('/', (req, res) => {
