@@ -19,6 +19,10 @@ const NoteSchema = new Schema({
   user: {
     type: ObjectId,
     ref: 'User',
+  },
+  image: {
+    type: Object,
+    default: "",
   }
 })
 
