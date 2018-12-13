@@ -35,14 +35,12 @@ router.route('/images/:id')
     const NAME = `${uuidv4()}.${EXT}`;
     fs.writeFile(`${MEDIA}/Images/${NAME}`, image.data, function(err) {
       if (err) console.log(err);
-      console.log("Successfully created a new file");
     });
     Note.findById(id, (err, note) => {
       if (err) console.log(err);
       if (note.image.name !== '') {
         fs.unlink(`${MEDIA}/Images/${note.image.name}`, (err) => {
           if (err) console.log(err);
-          console.log("Image successfully removed");
         });
       }
       note.image = {
