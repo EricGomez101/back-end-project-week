@@ -57,15 +57,12 @@ router.route('/images/:id')
       if(err) return res.status(500).json(err);
       if (note.image.name !== '') {
         fs.unlink(`${MEDIA}/Images/${note.image.name}`, (err) => {
-          if (err) console.log(err);
+          if (err) console.log("File not found.");
+          note.image = '';
+          note.save();
+          res.status(200).json(note);
         });
       }
-      note.image = '';
-      note.save();
-      Note.find()
-        .then((r) => {
-          return res.status(200).json(r);
-        })
     })
   })
 module.exports = router;
