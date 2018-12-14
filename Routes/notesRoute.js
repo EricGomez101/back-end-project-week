@@ -26,5 +26,17 @@ router.route('/:id')
       return res.status(200).json(note);
     })
   })
+  .delete((req, res) => {
+    const {id} = req.params;
+    Note.findByIdAndRemove(id, (err, note) => {
+      if(err) return res.status(500).json(err);
+      else {
+        Note.find()
+        .then(r => {
+          res.status(200).json(r);
+        })
+      }
+    })
+  })
 
 module.exports = router;
