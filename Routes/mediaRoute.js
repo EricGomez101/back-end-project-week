@@ -51,4 +51,21 @@ router.route('/images/:id')
       return res.status(200).json(note);
     })
   })
+  .delete((req, res) => {
+    const {id} = req.params;
+    Note.findById(id, (err, note) => {
+      if(err) return res.status(500).json(err);
+      if (note.image.name !== '') {
+        fs.unlink(`${MEDIA}/Images/${note.image.name}`, (err) => {
+          if (err) console.log(err);
+        });
+      }
+      note.image = '';
+      note.save();
+      Note.find()
+        .then((r) => {
+          return res.status(200).json(r);
+        })
+    })
+  })
 module.exports = router;
